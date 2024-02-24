@@ -1,24 +1,25 @@
 <script>
-    import { onMount } from "svelte";
-    let game;
+  import {Router, Link, Route} from "svelte-routing";
+  import Game from "./routes/Game.svelte";
+  import Home from "./routes/Home.svelte"
 
-    onMount(async () => {
-      const response = await fetch("http://localhost:8090/game/destiny");
-      game = await response.json();
-    });
 
-    console.log(game);
-    console.log("AAAAAAA");
+  export let url = "";
 </script>
-    
-<p>Game Info</p>
-{#if game}
-  <ul>
-    <li>
-      <p> Name: {game.Name}</p>    
-    </li>
-  </ul>
-{:else}
-  <p class="loading">loading...</p>
-{/if}
+
+
+<Router {url}>
+  <nav>
+    <Link to="/">Home</Link>
+  </nav>
+  <div>
+    <Route path ="/">
+      <Home/>
+    </Route>
+    <Route path ="game/:game_url" let:params>
+      <Game game_url={params.game_url}/>
+    </Route>
+  </div>
+</Router>
+
       
