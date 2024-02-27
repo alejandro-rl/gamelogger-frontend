@@ -48,6 +48,8 @@
 		touchedFields = {email: true, username: true, password: true };
 		if (!Object.keys(errors).length) {
 			register();
+            alert("Registration complete");
+            window.location.href = '/';
 		}
 	};
 </script>
