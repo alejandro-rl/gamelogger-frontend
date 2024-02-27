@@ -1,1 +1,1 @@
-<p>Home</p>
+<main>Welcome to GameLogger</main>
