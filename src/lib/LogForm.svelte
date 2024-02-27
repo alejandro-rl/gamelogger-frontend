@@ -1,7 +1,8 @@
 <script>
 	import Input from '../lib/Input.svelte';
 	import Button from '../lib/Button.svelte';
-	
+
+	export let log_info = {};
 	export let data = {};
 
 	let email = data.email ?? '';
@@ -12,7 +13,7 @@
     let final_res = null;
 
 
-    async function register () {
+    async function log () {
         const res = await fetch("http://localhost:8090/register", {
             method: "POST",
             body: JSON.stringify(result, null, 2)
@@ -47,15 +48,15 @@
 		touchedFields = {email: true, username: true, password: true };
 		if (!Object.keys(errors).length) {
 			register();
-            alert("Registration complete");
+            alert("Log complete");
             window.location.href = '/';
 		}
 	};
 </script>
 
 <div class = "form">
-    <form name="register">
-        <h2>Register</h2>
+    <form name="log">
+        <h3>Log</h3>
         <fieldset class="fieldset">
             <Input
                 type="text"
@@ -93,7 +94,6 @@
 
 <style>
     div.form {
-        padding-top: 5%;
         display: block;
         text-align: center;
     }
@@ -102,7 +102,7 @@
         margin-left: auto;
         margin-right: auto;
         text-align: left;
-        width: 40%;
+        width: 90%;
     }
 	.fieldset > * {
 		display: block;
